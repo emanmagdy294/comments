@@ -1,0 +1,76 @@
+<div class="container mt-3">
+    <div class="text-center addNote">
+        <div class="my-3 text-center">
+            <i class="fas fa-user-circle" style="font-size: 30px; color: rgb(65, 19, 172);"></i> User Name
+            <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa sunt fugit, consequuntur inventore ab
+                nesciunt itaque eum deserunt dignissimos. Expedita quis quia illo consectetur ratione nesciunt neque
+                nulla laboriosam possimus?</h5>
+        </div>
+        <!-- Button trigger modal -->
+        <div class="my-3 text-center ">
+            <h3 class="font-weight-bolder">{{count}} Comments </h3>
+        </div>
+        <button type="button" data-toggle="modal" data-target="#ADD">Add Your Comment <i
+                class="fas fa-plus"></i></button>
+    </div>
+</div>
+<div>
+
+    <div class="container mt-5 m-auto">
+        <h4 class="my-3">Last 5 Comments</h4>
+
+        <div class="m-auto mt-4" *ngFor="let item of allNotes;let index=index">
+            <div class="bgBOX mt-4 w-75">
+                <p class="p-1 float-right">{{today | date:'dd-MM-yyyy':'+0530'}}</p>
+                <div class="clr"></div>
+                <i class="fas fa-times-circle float-right px-2 closeIcon" (click)='delete(index)' data-toggle="modal"
+                    data-target="#Delete"></i>
+                <div class="p-1 pl-4">
+                    <i class="fas fa-user-circle" style="font-size: 30px; color: rgb(65, 19, 172);"></i>
+                    {{item.title}}
+                    <br>
+                    {{item.desc|uppercase}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="my-4 text-center">
+    <a class="bg-white text-dark p-3" (click)='showComments()'>show all comments ...........</a>
+</div>
+
+<!-- ------------------------------  modal  -------------------------- -->
+
+<!-- Modal -->
+<div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Add Your comment <i class="far fa-grin-wink "></i></h2>
+                <button type="button" class="close m-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <input type="text " class="form-control inputColor" [(ngModel)]="note.title"
+                                placeholder=" Title ">
+                        </div>
+                        <div class="col-md-12 my-2 ">
+                            <textarea type="text " class="form-control inputColor" cols="30 " rows="10 "
+                                [(ngModel)]="note.desc" placeholder=" ADD "></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-dismiss="modal">Close</button>
+                <button type="button " class="btn  btn-secondary" (click)="AddNote()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class=" container col-md-7 py-5  my-2 form">
+    <div class="margin-auto text-center">
+        <h2 class="text-center py-2 address">
+            SIGN UP
+        </h2>
+    </div>
+    <form #f="ngForm" (ngSubmit)="signup(f)">
+        <div class="row container">
+            <div class=" col-md-6">
+                <div class=" form-group">
+                    <input ngModel name="name" autofocus="on" autocomplete="off" required placeholder="enter your last name" class="form-control address" type="text" id="last_name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input ngModel name="email" autocomplete="off" #email="ngModel" required email placeholder="enter your email" class="form-control address mb-1" type="email" id="email">
+                    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">email is required</div>
+                    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">your doesn't match email format</div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row container">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input ngModel name="password" #password="ngModel" required minlength="6" placeholder="enter your password" class="mb-1 form-control address" type="password" id="password">
+                    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required"> password is required </div>
+                    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.minlength">password minlength 6 </div>
+                </div>
+            </div>
+            <div class=" col-md-6">
+                <div class=" form-group">
+                    <input ngModel name="confirmpassword" required #passwordconfirm="ngModel" placeholder="confirm password" class="form-control address" type="password" id="password">
+                </div>
+                <div class="alert alert-danger" *ngIf="passwordconfirm.invalid && passwordconfirm.touched"> password confirm is required</div> <br>
+                <div class="alert alert-danger" *ngIf="passwordconfirm.value !== password.value && passwordconfirm.touched"> passwords are not equal</div>
+
+            </div>
+
+        </div>
+
+        <div class="margin-auto text-center address">
+            <button type="submit" class="address px-5" [disabled]="f.invalid || passwordconfirm.value !== password.value  ">SIGN UP</button>
+        </div>
+
+        <div class=" py-2 text-center container">
+            <div class="alert alert-danger" *ngIf="errormessage"> {{errormessage}}</div>
+        </div>
+    </form>
+</div>

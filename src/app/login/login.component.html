@@ -1,0 +1,35 @@
+<div class=" container col-md-7 py-5  my-2 form">
+    <div class="margin-auto text-center">
+        <h2 class="text-center py-2 address">
+            LOG IN
+        </h2>
+    </div>
+    <form #f="ngForm" (ngSubmit)="login(f)">
+        <div class="container">
+            <div class="col-md-12">
+                <div class=" form-group">
+                    <input ngModel name="email" #email="ngModel" required email placeholder="enter your email" class="form-control address" type="email" id="email">
+                    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">email is required</div>
+                    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">your doesn't match email format</div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <div class=" form-group">
+                    <input ngModel name="password" #password="ngModel" required minlength="6" placeholder="enter your password" class="form-control address" type="password" id="password">
+                    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required"> password is required </div>
+                    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.minlength">password minlength 6 </div>
+                </div>
+            </div>
+        </div>
+        <div class="margin-auto text-center address">
+            <button type="submit" class="address px-5" [disabled]="f.invalid || password.value !== password.value  ">SIGN IN</button>
+        </div>
+    </form>
+    <div class=" py-2 text-center container">
+        <div class="alert alert-danger" *ngIf="errormessage"> {{errormessage}}</div>
+    </div>
+
+</div>

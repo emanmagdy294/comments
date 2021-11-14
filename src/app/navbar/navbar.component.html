@@ -1,0 +1,31 @@
+<section class="bg-light">
+    <nav class="navbar container navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" *ngIf="isUser">
+                    <a class="nav-link" routerLink="note">Comments<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <ul class="navbar-nav">
+                    <li class="nav-item active" *ngIf="!isUser">
+                        <a class="nav-link" routerLink="login">SIGN IN <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active" *ngIf="!isUser">
+                <a class="nav-link" routerLink="signin">SIGN UP <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active" *ngIf="isUser">
+                <a class="nav-link" (click)="logout()">LOG OUT<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">{{username}}</a>
+            </li>
+            </ul>
+            </span>
+        </div>
+    </nav>
+</section>
